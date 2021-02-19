@@ -1,0 +1,257 @@
+//COLORS
+$red: #F87070;
+$cyan: #70F3F8;
+$purple: #D881F8;
+$grey: #D7E0FF;
+$blue: #1e213f;
+$silver: #EFF1FA;
+$dark-blue: #161932;
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flex-spread {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@mixin buttons {
+    border: none;
+    background: none;
+    opacity: .5;
+    transition: opacity .3s;
+    &:hover {
+        opacity: 1;
+    }
+}
+
+//FONTS
+$kumbh: 'Kumbh Sans', sans-serif;
+$robotos: 'Roboto Slab', serif;
+$space: 'Space Mono', monospace;
+
+#modal-container {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.5);
+}
+.modal {
+    height: 100%;
+    width: 100%;
+    @include center();
+}
+
+#settings {
+    width: 550px;
+    background: white;
+    border-radius: 30px;
+    font-family: inherit;
+    color: $dark-blue;
+
+    .form-nav {
+        @include flex-spread();
+        padding: 10px 40px;
+        border-bottom: 1px solid #e3e1e1;
+    }
+    .form-section {
+        padding: 20px 0;
+        margin: 0 40px;
+        h4 {
+            margin: 20px 0;
+        }
+
+        .input-flex {
+            @include flex-spread();
+
+            .label-input {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+
+                label {
+                    color: $blue;
+                    opacity: .4;
+                    margin-bottom: 10px;
+                }
+                input {
+                    box-sizing: border-box;
+                    padding: 16px;
+                    height: 48px;
+                    width: 140px;
+                    border: none;
+                    background: $silver;
+                    border-radius: 10px;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                .custom-spinners {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    bottom: 7px;
+                    right: 16px;
+                    cursor: pointer;
+
+                    .arrow {
+                        margin: 5px 0;
+                        opacity: .25;
+                        transition: opacity .3s;
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .spread {
+        @include flex-spread();
+        border-top: 1px solid #e3e1e1;
+
+        .selection-spread {
+            display: flex;
+        }
+    }
+}
+
+#close {
+    @include buttons();
+}
+.outline > .selection > img {
+    transition: opacity .3s;
+}
+.hide {
+    opacity: 0;
+}
+
+.outline {
+    border: 1px solid white;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    @include center();
+    margin-left: 16px;
+    transition: border .3s;
+
+    &:hover {
+        border: 1px solid $silver;
+    }
+}
+.selection {
+    @include center();
+    flex-shrink: 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    background: $silver;
+    color: $blue;
+    transition: background .3s;
+    cursor: pointer;
+}
+
+.selected {
+    background: $dark-blue;
+    color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#kumbh-font {
+    font-family: $kumbh;
+}
+#robotos-font {
+    font-family: $robotos;
+}
+#mono-font {
+    font-family: $space;
+}
+
+#red-color {
+    background: $red;
+}
+#cyan-color {
+    background: $cyan;
+}
+#purple-color {
+    background: $purple;
+}
+#apply {
+    padding: 20px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 30px;
+    text-align: center;
+    width: 140px;
+    background: $red;
+    border-radius: 40px;
+    color: white;
+    border: none;
+
+    &:hover {
+        background: lighten($red, 10%);
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    #settings {
+        width: 327px;
+        border-radius: 15px;
+
+        .form-nav {
+            padding: 2.5px 20px;
+            h2 {
+                font-size: 20px;
+            }
+        }
+        .form-section {
+            padding: 15px 0;
+            text-align: center;
+            margin: 0 20px;
+
+            .input-flex {
+                @include flex-column();
+
+                .label-input {
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    margin: 5px 0;
+
+                    label {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+        .spread {
+            @include flex-column();
+        }
+    }
+    .outline {
+        margin: 0 8px;
+    }
+    h4 {
+        margin: 10px 0;
+        font-size: 12px;
+    }
+}
